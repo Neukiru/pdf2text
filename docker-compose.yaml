@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  frontend:
+    build: frontend
+    ports:
+      - 8501:8501
+    depends_on:
+      - backend
+    volumes:
+        - ./frontend:/app
+
+  backend:
+    build: backend
+    ports:
+      - 8001:8001
+    volumes:
+      - type: bind
+        source: ./static
+        target: /app/static
